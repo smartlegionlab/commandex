@@ -16,8 +16,8 @@
 
 ## Help the project financially:
 
-- Yandex Money: [https://yoomoney.ru/to/4100115206129186](https://yoomoney.ru/to/4100115206129186)
 - PayPal: [https://paypal.me/smartlegionlab](https://paypal.me/smartlegionlab)
+- Yandex Money: [https://yoomoney.ru/to/4100115206129186](https://yoomoney.ru/to/4100115206129186)
 - LiberaPay: [https://liberapay.com/smartlegion/donate](https://liberapay.com/smartlegion/donate)
 - Visa: 4048 0250 0089 5923
 
@@ -41,13 +41,6 @@ Author and developer: ___A.A Suvorov___
 - Windows: 7/8/10.
 - Termux (Android).
 
-***
-
-## Requirements:
-
-- [Python](https://python.org) 3.6+
-  - [Download](https://python.org)
-  
 ***
 
 ## What's new?
