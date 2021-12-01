@@ -5,86 +5,34 @@
 # Copyright © 2018-2021, A.A Suvorov
 # All rights reserved.
 # --------------------------------------------------------
-
-
-class Command:
-    """Command"""
-    def __init__(self, name):
-        self._name = str(name)
-
-    @property
-    def name(self):
-        """Command as a string"""
-        return self._name
-
-    def __repr__(self):
-        return f'<Command {self._name}>'
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
 
 
 class Pack:
-    """Command Package"""
-    def __init__(self, name):
-        self._commands = []
+    def __init__(self, name, commands=None):
+        self._commands = [] if commands is None or not isinstance(commands, list) else commands
         self._name = str(name)
 
-    def add(self, command: Command):
-        """
-        Add a command.
+    def add(self, command):
+        self._commands.append(str(command))
 
-        :param command: - Command object.
-        :return: None.
-
-        """
-        if not isinstance(command, Command):
-            raise TypeError
-        self._commands.append(command)
-
-    def add_commands(self, commands):
-        """
-        Add Commands.
-
-        :param commands: iterator with Command objects.
-        :return: None
-
-        """
-        for command in commands:
-            if isinstance(command, Command):
-                self.add(command)
-
-    def remove(self, command: Command):
-        """
-        Remove command.
-
-        :param command: - Command object.
-        :return: None
-
-        """
+    def remove(self, command):
         if command in self._commands:
             index = self._commands.index(command)
             del self._commands[index]
 
-    def get_commands(self):
-        """
-        Get all the commands from the package.
-
-        :return: - generator with command objects.
-
-        """
-        return (command for command in self._commands)
-
     @property
     def commands(self):
-        """Commands list"""
         return self._commands
 
     @property
     def name(self):
-        """Pack name"""
         return self._name
 
     @property
-    def count(self):
-        """Commands count"""
+    def command_count(self):
         return len(self._commands)
 
     def __repr__(self):

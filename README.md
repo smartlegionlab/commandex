@@ -45,8 +45,12 @@ Author and developer: ___A.A Suvorov___
 
 ## What's new?
 
-___commandex v0.1.0___
+___commandex v0.2.0___
 
+- Fixed bugs.
+- Optimized, improved and simplified code.
+- Rejection of *.json files in favor of *.cfg.
+- New classes, modules, tests.
 
 ***
 
@@ -54,18 +58,34 @@ ___commandex v0.1.0___
 
 A cross-platform library for creation, storage, management of commands and command packages. 
 Execution of commands, parsing of files with command packages.
- 
+
+- Store the required commands under a given name in a simple file with a clear structure.
+- Read named command packages from a file.
+- Use only the required command packages from a file using filtering.
+- Execute command packages cross-platform. 
+
+### How it works?
+
+1. Create a file with any name, with the extension * .cfg
+2. Use # as a comment, line break for convenience or separation.
+3. Use [package name] to specify the name of the command package.
+4. After the name, write the commands that you decided to combine under this name, one per line.
+5. To create the next batch of commands, use points 2, 3 again.
+6. Between commands, you can insert blank lines or comments, see point 2.
+
 Used to create utilities for working with commands (execution, launch, autorun, storage).
 
 You can keep your commands in simple and understandable files, collect them in one place,
 split into named categories (packages) and execute at any time:
 
-The files must have the extension *.cfg, or *.json and have the correct structure:
+The files must have the extension *.cfg, and have the correct structure:
 
 
 ### commands.cfg:
 
-```text
+```ini
+# Comments
+
 [package name 1]
 command 1
 command 2
@@ -75,28 +95,6 @@ command N
 command 1
 command 2
 command N
-```
-
-### commands.json:
-
-```json5
-{
-  "name1":
-
-  [
-    "command1",
-    "command2",
-    "commandN"
-  ],
-
-  "name2":
-
-  [
-    "command1",
-    "command2",
-    "commandN"
-  ]
-}
 ```
 
 ***
@@ -110,46 +108,50 @@ command N
 
 Available tools:
 
-- Command executors
-- Pack makers
-- Parsers
-- Commands
-- Packs
-- Factories
+- Pack - storing commands.
+- Command executors - command execution.
+- Pack makers - create a list with objects of command packages.
+- Parsers - parsers for files with command packages.
+- Filters - filtering commands.
+- Factories - Fabric for creating objects. 
+
+Principle of operation:
+
+- Reading command packages from a file.
+- Filter packages if needed.
+- We create a list of package objects for future use.
+- We execute commands from each package.
+
+
+### Simplest implementation:
 
 ```python
 from commandex import Commander
-from commandex.executors import OsExecutor, SubExecutor, Executor
-from commandex.commandpack import Command, Pack
-from commandex.parsers import CfgParser, JsonParser, Parser
-from commandex.maker import PackMaker
+
 commander = Commander()
+# Reading command packages from a file.
+pack_dict = commander.parsers.cfg_parser.parse('file.cfg')
+# Filter packages if needed.
+packs = commander.filters.pack_filter.filter_pack_dict(pack_dict, add_list=[], exc_list=[])
+# We create a list of package objects for future use.
+pack_list = commander.makers.pack_maker.make_pack_list(packs)
 
-os_executor = OsExecutor()
-sub_executor = SubExecutor()
-executor = Executor()
-
-command = Command('pip list')
-pack = Pack('default')
-
-cfg_parser = CfgParser()
-json_parser = JsonParser()
-parser = Parser()
-
-pack_maker = PackMaker()
+# We execute commands from each package.
+for pack in pack_list:
+    print(pack.name)
+    for command in pack.commands:
+        print(command)
+        commander.executors.os.execute(command)
 
 ```
 
-### Termux support:
+### Termux, Windows support:
 
-Utilities created with use work "commandex", without problems in Termux.
+Utilities created with use work "commandex", without problems in Termux, Windows.
 
-### Windows support:
+For example: [commandman](https://github.com/smartlegionlab/commandman).
 
-- Install [python](https://python.org)
-- `pip3 install commandex`
-
-Utilities created with use work "commandex", without problems in Windows:
+***
 
 ### Test coverage:
 
@@ -193,4 +195,7 @@ Utilities created with use work "commandex", without problems in Windows:
     (see LICENSE for details).
     Copyright © 2018-2021, A.A Suvorov
     All rights reserved.
+    --------------------------------------------------------
+    https://github.com/smartlegionlab
+    smartlegiondev@gmail.com
     --------------------------------------------------------

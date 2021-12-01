@@ -4,7 +4,10 @@
 # (see LICENSE for details).
 # Copyright © 2018-2021, A.A Suvorov
 # All rights reserved.
-# -------------------------------------------------------
+# --------------------------------------------------------
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
 
 
 class TestOsExecutor:

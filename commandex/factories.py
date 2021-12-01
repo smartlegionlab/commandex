@@ -5,45 +5,47 @@
 # Copyright © 2018-2021, A.A Suvorov
 # All rights reserved.
 # --------------------------------------------------------
-from commandex.commandpack import Command, Pack
-from commandex.executors import OsExecutor, SubExecutor, Executor
-from commandex.maker import PackMaker
-from commandex.parsers import CfgParser, JsonParser, Parser
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
+from commandex.executors import OsExecutor, SubExecutor, Executors
+from commandex.filters import PackFilter, Filters
+from commandex.makers import PackMaker, Makers
+from commandex.parsers import CfgParser, Parsers
 
 
 class ExecutorsFactory:
-    """Executors factory"""
-
     @classmethod
     def get_os_executor(cls):
-        """Get OsExecutor"""
         return OsExecutor()
 
     @classmethod
     def get_sub_executor(cls):
-        """Get SubExecutor"""
         return SubExecutor()
 
     @classmethod
-    def get_executor(cls):
-        """Get Executor"""
-        return Executor()
+    def get_executors(cls):
+        return Executors()
 
 
-class CommandPackFactory:
+class FiltersFactory:
     @classmethod
-    def create_command(cls, name):
-        return Command(name)
+    def get_pack_filter(cls):
+        return PackFilter()
 
     @classmethod
-    def create_pack(cls, name):
-        return Pack(name)
+    def get_filters(cls):
+        return Filters()
 
 
-class MakerFactory:
+class MakersFactory:
     @classmethod
     def get_pack_maker(cls):
         return PackMaker()
+
+    @classmethod
+    def get_makers(cls):
+        return Makers()
 
 
 class ParsersFactory:
@@ -52,17 +54,12 @@ class ParsersFactory:
         return CfgParser()
 
     @classmethod
-    def get_json_parser(cls):
-        return JsonParser()
-
-    @classmethod
-    def get_parser(cls):
-        return Parser()
+    def get_parsers(cls):
+        return Parsers()
 
 
-class CommandExFactory:
-    """CommandEx factory"""
+class Factories:
     executors = ExecutorsFactory()
-    command_pack = CommandPackFactory()
-    maker = MakerFactory()
+    filters = FiltersFactory()
+    makers = MakersFactory()
     parsers = ParsersFactory()

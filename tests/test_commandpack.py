@@ -5,15 +5,9 @@
 # Copyright © 2018-2021, A.A Suvorov
 # All rights reserved.
 # --------------------------------------------------------
-import pytest
-
-
-class TestCommand:
-    def test_name(self, command):
-        assert command.name == 'echo "test"'
-
-    def test__repr__(self, command):
-        assert repr(command) == f'<Command {command.name}>'
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
 
 
 class TestPack:
@@ -21,38 +15,26 @@ class TestPack:
         pack.add(command)
         assert command in pack.commands
 
-    def test_add_commands(self, pack, commands):
-        pack.add_commands(commands)
-        assert all([command in pack.commands for command in commands])
-
-    def test_remove(self, pack, commands):
-        pack.add_commands(commands)
-        command = commands[0]
+    def test_remove(self, pack, command):
+        pack.add(command)
         assert command in pack.commands
         pack.remove(command)
         assert command not in pack.commands
 
-    def test_get_commands(self, pack, commands):
-        command = commands[0]
-        pack.add_commands(commands)
-        assert command in [c for c in pack.get_commands()]
-
     def test_commands(self, pack, commands):
-        pack.add_commands(commands)
+        for command in commands:
+            pack.add(command)
         assert isinstance(pack.commands, list)
         assert commands == pack.commands
 
     def test_name(self, pack):
         assert pack.name == 'Test'
 
-    def test_count(self, pack, commands):
-        pack.add_commands(commands)
+    def test_command_count(self, pack, commands):
+        for command in commands:
+            pack.add(command)
         count = len(commands)
-        assert pack.count == count
+        assert pack.command_count == count
 
     def test_repr(self, pack):
         assert repr(pack) == f'<Pack {pack.name}>'
-
-    def test_type_err(self, pack):
-        with pytest.raises(TypeError):
-            pack.add(8)

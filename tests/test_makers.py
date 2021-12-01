@@ -8,16 +8,11 @@
 # https://github.com/smartlegionlab
 # smartlegiondev@gmail.com
 # --------------------------------------------------------
-from commandex.filters import Filters
-from commandex.makers import Makers
-from commandex.parsers import Parsers
-from commandex.executors import Executors
-from commandex.factories import Factories
+from commandex.commandpack import Pack
 
 
-class Commander:
-    factories = Factories()
-    executors = Executors()
-    filters = Filters()
-    makers = Makers()
-    parsers = Parsers()
+class TestPackMaker:
+    def test_make_pack_list(self, pack_maker, pack_dict):
+        assert isinstance(pack_maker.make_pack_list(pack_dict), list)
+        assert all([isinstance(obj, Pack) for obj in pack_maker.make_pack_list(pack_dict)])
+        assert len(pack_dict) == len(pack_maker.make_pack_list(pack_dict))

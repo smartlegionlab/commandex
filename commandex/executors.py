@@ -5,17 +5,18 @@
 # Copyright © 2018-2021, A.A Suvorov
 # All rights reserved.
 # --------------------------------------------------------
-"""Tests for executors.py"""
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
 import os
 import subprocess
 from abc import ABC, abstractmethod
 
 
 class ExecutorBase(ABC):
-    """Abstract Command Executor"""
     @abstractmethod
     def execute(self, command):
-        """Execute command"""
+        """"""
 
     def __call__(self, command):
         return self.execute(command)
@@ -23,34 +24,16 @@ class ExecutorBase(ABC):
 
 class OsExecutor(ExecutorBase):
     def execute(self, command):
-        """
-        Execute command.
-
-        - To execute the command, os.system is used;
-
-        :param command: <str> - command;
-        :return: <bool> - status of execution command.
-        """
         return not bool(os.system(command))
 
 
 class SubExecutor(ExecutorBase):
     def execute(self, command):
-        """
-        Execute command.
-
-        - To execute the command, subprocess is used;
-
-        WARNING: Use with care, favor OsExecutor;
-
-        :param command: <str> - command;
-        :return: <bool> - status of execution command;
-        """
         p = subprocess.Popen(command, shell=True, stderr=subprocess.DEVNULL)
         status = p.wait()
         return not bool(status)
 
 
-class Executor:
+class Executors:
     os = OsExecutor()
     sub = SubExecutor()

@@ -5,6 +5,9 @@
 # Copyright © 2018-2021, A.A Suvorov
 # All rights reserved.
 # --------------------------------------------------------
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
 """
 Command executors library.
 
@@ -14,4 +17,4 @@ parsing of files with command packages.
 
 """
 from commandex.commander import Commander
-__version__ = '0.1.0'
+__version__ = '0.2.0'

@@ -8,16 +8,11 @@
 # https://github.com/smartlegionlab
 # smartlegiondev@gmail.com
 # --------------------------------------------------------
-from commandex.filters import Filters
-from commandex.makers import Makers
-from commandex.parsers import Parsers
-from commandex.executors import Executors
-from commandex.factories import Factories
 
 
-class Commander:
-    factories = Factories()
-    executors = Executors()
-    filters = Filters()
-    makers = Makers()
-    parsers = Parsers()
+class TestPackFilter:
+    def test_filter_pack_dict(self, pack_filter, pack_dict):
+        add_list = [name for name in pack_dict][:1]
+        exc_list = [name for name in pack_dict][1:]
+        assert add_list == [name for name in pack_filter.filter_pack_dict(pack_dict, add_list=add_list)]
+        assert all([name not in pack_filter.filter_pack_dict(pack_dict, exc_list=exc_list) for name in exc_list])

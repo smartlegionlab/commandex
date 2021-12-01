@@ -1,7 +1,17 @@
-from commandex.commandpack import Command, Pack
-from commandex.executors import OsExecutor, SubExecutor, Executor
-from commandex.maker import PackMaker
-from commandex.parsers import CfgParser, JsonParser, Parser
+# -*- coding: utf-8 -*-
+# --------------------------------------------------------
+# Licensed under the terms of the BSD 3-Clause License
+# (see LICENSE for details).
+# Copyright © 2018-2021, A.A Suvorov
+# All rights reserved.
+# --------------------------------------------------------
+# https://github.com/smartlegionlab
+# smartlegiondev@gmail.com
+# --------------------------------------------------------
+from commandex.executors import OsExecutor, SubExecutor, Executors
+from commandex.filters import PackFilter, Filters
+from commandex.makers import PackMaker, Makers
+from commandex.parsers import CfgParser, Parsers
 
 
 class TestExecutorsFactory:
@@ -12,29 +22,29 @@ class TestExecutorsFactory:
     def test_get_sub_executor(self, executors_factory):
         assert isinstance(executors_factory.get_sub_executor(), SubExecutor)
 
-    def test_get_executor(self, executors_factory):
-        assert isinstance(executors_factory.get_executor(), Executor)
+    def test_get_executors(self, executors_factory):
+        assert isinstance(executors_factory.get_executors(), Executors)
 
 
-class TestCommandPackFactory:
-    def test_create_command(self, command_pack_factory):
-        assert isinstance(command_pack_factory.create_command('name'), Command)
+class TestFiltersFactory:
+    def test_get_pack_filter(self, filters_factory):
+        assert isinstance(filters_factory.get_pack_filter(), PackFilter)
 
-    def test_create_pack(self, command_pack_factory):
-        assert isinstance(command_pack_factory.create_pack('name'), Pack)
+    def test_get_filters(self, filters_factory):
+        assert isinstance(filters_factory.get_filters(), Filters)
+
+
+class TestMakersFactory:
+    def test_get_pack_maker(self, makers_factory):
+        assert isinstance(makers_factory.get_pack_maker(), PackMaker)
+
+    def test_get_makers(self, makers_factory):
+        assert isinstance(makers_factory.get_makers(), Makers)
 
 
 class TestParsersFactory:
     def test_get_cfg_parser(self, parsers_factory):
         assert isinstance(parsers_factory.get_cfg_parser(), CfgParser)
 
-    def test_get_json_parser(self, parsers_factory):
-        assert isinstance(parsers_factory.get_json_parser(), JsonParser)
-
     def test_get_parser(self, parsers_factory):
-        assert isinstance(parsers_factory.get_parser(), Parser)
-
-
-class TestMakerFactory:
-    def test_get_pack_maker(self, makers_factory):
-        assert isinstance(makers_factory.get_pack_maker(), PackMaker)
+        assert isinstance(parsers_factory.get_parsers(), Parsers)

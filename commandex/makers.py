@@ -8,16 +8,14 @@
 # https://github.com/smartlegionlab
 # smartlegiondev@gmail.com
 # --------------------------------------------------------
-from commandex.filters import Filters
-from commandex.makers import Makers
-from commandex.parsers import Parsers
-from commandex.executors import Executors
-from commandex.factories import Factories
+from commandex.commandpack import Pack
 
 
-class Commander:
-    factories = Factories()
-    executors = Executors()
-    filters = Filters()
-    makers = Makers()
-    parsers = Parsers()
+class PackMaker:
+    @classmethod
+    def make_pack_list(cls, pack_dict: dict):
+        return [Pack(name=name, commands=commands) for name, commands in pack_dict.items()]
+
+
+class Makers:
+    pack_maker = PackMaker()
