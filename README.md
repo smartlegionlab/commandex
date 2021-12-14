@@ -45,12 +45,9 @@ Author and developer: ___A.A Suvorov___
 
 ## What's new?
 
-___commandex v0.2.0___
+___commandex v0.2.1___
 
-- Fixed bugs.
-- Optimized, improved and simplified code.
-- Rejection of *.json files in favor of *.cfg.
-- New classes, modules, tests.
+- Fixed errors.
 
 ***
 

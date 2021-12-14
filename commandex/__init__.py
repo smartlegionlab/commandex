@@ -17,4 +17,4 @@ parsing of files with command packages.
 
 """
 from commandex.commander import Commander
-__version__ = '0.2.0'
+__version__ = '0.2.1'

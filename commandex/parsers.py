@@ -24,12 +24,12 @@ class CfgParser(ParserBase):
         name = None
         for line in self._get_lines(file):
 
-            if line.startswith('[') and line.endswith(']'):
+            if line and line.startswith('[') and line.endswith(']'):
                 name = line.lstrip('[').rstrip(']')
                 pack_dict[name] = []
                 continue
 
-            if name is not None:
+            if name is not None and line:
                 pack_dict[name].append(line)
 
         return pack_dict
@@ -39,7 +39,7 @@ class CfgParser(ParserBase):
         try:
             with open(file, 'r', encoding='utf-8') as f:
                 return [line.rstrip('\n') for line in f.readlines()
-                        if line or not line.startswith('#') or not line == ' ' or not line == '\n']
+                        if line and not line.startswith('#') and not line == ' ' and not line == '\n']
         except (FileNotFoundError, PermissionError, OSError):
             return {}
 
