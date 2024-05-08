@@ -1,0 +1,9 @@
+include LICENSE
+include README.md
+include requirements.txt
+include setup.py
+include setup.cfg
+include tox.ini
+global-exclude tests/*
+global-exclude data/*
+global-exclude requirements/*
