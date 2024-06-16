@@ -20,7 +20,7 @@ ___commandex___ -  A cross-platform library for creation, storage, management of
 
 ***
 
-Author and developer: ___A.A Suvorov___
+Author and developer: ___A.A. Suvorov___
 
 [![smartlegiondev@gmail.com](https://img.shields.io/static/v1?label=email&message=smartlegiondev@gmail.com&color=blue)](mailto:smartlegiondev@gmail.com)
 
@@ -36,7 +36,7 @@ Author and developer: ___A.A Suvorov___
 
 ## What's new?
 
-___commandex v0.2.2___
+___commandex v0.2.3___
 
 ***
 
@@ -179,7 +179,7 @@ For example: [commandman](https://github.com/smartlegionlab/commandman).
     --------------------------------------------------------
     Licensed under the terms of the BSD 3-Clause License
     (see LICENSE for details).
-    Copyright © 2018-2024, A.A Suvorov
+    Copyright © 2018-2024, A.A. Suvorov
     All rights reserved.
     --------------------------------------------------------
     https://github.com/smartlegionlab

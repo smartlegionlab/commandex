@@ -2,3 +2,6 @@ pytest
 pytest-cov
 tox
 build
+setuptools
+wheel
+twine
