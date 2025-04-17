@@ -2,6 +2,7 @@
 
 ***
 
+[![PyPI Downloads](https://static.pepy.tech/badge/commandex)](https://pepy.tech/projects/commandex)
 ![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/commandex)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/commandex?label=pypi%20downloads)](https://pypi.org/project/commandex/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/commandex)](https://github.com/smartlegionlab/commandex/)
