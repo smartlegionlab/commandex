@@ -149,7 +149,7 @@ For example: [commandman](https://github.com/smartlegionlab/commandman).
 
 #### __Test coverage 100%__
 
-- `pip install pytest-coverage`
+- `pip install pytest-cov`
 - `pytest --cov`
 
 ![commandex image](https://github.com/smartlegionlab/commandex/raw/master/data/images/commandex.png)
